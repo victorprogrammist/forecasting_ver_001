@@ -135,7 +135,7 @@ void MainWindow::load_settings(bool do_clear) {
     load(ui->ed_steps_forecast, "КоличествоПрогнозируемыхШагов", "100");
     load(ui->ed_qty_one_forecast, "КоличествоШаговВпередОтПозицииПрогноза", "1");
 
-    load(ui->ed_periods_cicling, "ПериодыЦикличности", "1,24,168");
+    load(ui->ed_periods_cicling, "ПериодыЦикличности", "1, 24, 168");
 
     bool fl = get_param("ИспользоватьЗапятуюДляВыводаЧисел", "false")!="false";
     ui->checkBox_UseComma->setCheckState( fl ? Qt::Checked : Qt::Unchecked );
