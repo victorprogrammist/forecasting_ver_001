@@ -49,7 +49,7 @@ void FileLoader::private_append_one_file(const QString& file_name) {
     if (list_cols.isEmpty())
         list_cols = cc;
     else if (list_cols.join(",") != cc.join(","))
-        do_throw("колонки в загружаемых файлах не совпадают");
+        do_throw("колонки в загружаемых файлах не совпадают: "+file_name);
 
     list.removeFirst();
 
@@ -69,7 +69,9 @@ void FileLoader::private_append_one_file(const QString& file_name) {
 
         QStringList ss = s.split(col_splitter);
         if (ss.size() != list_cols.size())
-            do_throw("Ошибка в файле "+file_name+" в строке "+QString::number(i_line));
+            do_throw("Ошибка в файле "+file_name+" в строке "
+                     +QString::number(i_line+2)  // +заголовок +i_line от нуля
+                     +": не соответствует к-во колонок");
 
         for (int i_col = 0; i_col < ref_data.size(); ++i_col)
             ref_data[i_col]->data()[count_loaded_data+i_line] = ss.at(i_col).trimmed();

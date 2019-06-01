@@ -91,6 +91,8 @@ void PrepareByDate::prepare_by_date_time(PrepareByDate& prepare, int period) {
     // сконвертировали строку даты-время к бинарному представлению
     for (int i = 0; i < prepare.ar_raw_date_time.size(); ++i) {
         QDateTime dd = QDateTime::fromString(prepare.ar_raw_date_time.at(i), fmt);
+        if (dd.isNull() || dd.isValid()==false)
+            do_throw("Некорректная дата в строке: "+QString::number(i+2));
         dd.setTimeSpec(Qt::UTC);
         ar_dt[i] = dd;
     }
